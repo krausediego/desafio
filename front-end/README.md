@@ -30,9 +30,7 @@ npm install
 yarn
 ```
 
-4. Crie um arquivo `firebase-config.json` na raiz do projeto back-end com as credenciais do seu projeto firebase.
-
-5. Inicie o servidor de desenvolvimento:
+4. Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
@@ -40,7 +38,7 @@ npm run dev
 yarn dev
 ```
 
-6. Acesse a aplicação em `http://localhost:5173`
+5. Acesse a aplicação em `http://localhost:5173`
 
 ## Estrutura do Projeto
 
