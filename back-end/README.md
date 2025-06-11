@@ -32,6 +32,8 @@ npm install
 yarn
 ```
 
+4. Crie o arquivo `firebase-config.json` e insira as credenciais do seu projeto.
+
 5. Inicie o servidor:
 
 ```bash
