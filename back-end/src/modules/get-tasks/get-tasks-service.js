@@ -9,7 +9,6 @@ export class GetTasksService {
    */
   async getTasks() {
     try {
-      console.log("AQUI2");
       const snapshot = await database.collection("tasks").get();
 
       if (!snapshot || !snapshot.docs) {
