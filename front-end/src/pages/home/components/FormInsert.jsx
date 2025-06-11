@@ -20,13 +20,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertTasks } from "../../../services/insert-tasks";
 import { z } from "zod";
+import { LoaderCircle } from "lucide-react";
 
 const schema = z.object({
-  description: z
-    .string()
-    .min(6, { message: "A descrição deve conter ao menos 6 caracteres" }),
-  responsible: z.string(),
-  status: z.string(),
+  description: z.string().nonempty({ message: "A descrição é obrigatória" }),
+  responsible: z.string().nonempty({ message: "O responsável é obrigatório" }),
+  status: z.string().nonempty({ message: "O status é obrigatório" }),
 });
 
 export function FormInsert() {
@@ -40,10 +39,11 @@ export function FormInsert() {
     },
   });
 
-  const { mutateAsync: insertTasksFn } = useMutation({
-    mutationFn: insertTasks,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tasks[]"] }),
-  });
+  const { mutateAsync: insertTasksFn, isPending: isInsertLoading } =
+    useMutation({
+      mutationFn: insertTasks,
+      onSuccess: () => queryClient.invalidateQueries({ queryKey: ["tasks[]"] }),
+    });
 
   async function submitForm(task) {
     try {
@@ -115,7 +115,8 @@ export function FormInsert() {
           )}
         />
 
-        <Button type="submit">
+        <Button disabled={isInsertLoading} type="submit">
+          {isInsertLoading && <LoaderCircle className="w-4 h-4 animate-spin" />}
           <span>Salvar tarefa</span>
         </Button>
       </form>

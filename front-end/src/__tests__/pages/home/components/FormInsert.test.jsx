@@ -43,19 +43,14 @@ describe("FormInsert", () => {
     ).toBeInTheDocument();
   });
 
-  it("should show validation error for short description", async () => {
+  it("should show validation error for empty description", async () => {
     renderFormInsert();
-
-    const descriptionInput = screen.getByLabelText("Descrição");
-    await userEvent.type(descriptionInput, "test");
 
     const submitButton = screen.getByRole("button", { name: "Salvar tarefa" });
     await userEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(
-        screen.getByText("A descrição deve conter ao menos 6 caracteres")
-      ).toBeInTheDocument();
+      expect(screen.getByText("A descrição é obrigatória")).toBeInTheDocument();
     });
   });
 
@@ -70,12 +65,22 @@ describe("FormInsert", () => {
     );
     await userEvent.type(screen.getByLabelText("Responsável"), "John Doe");
 
+    // Seleciona o status
+    const statusSelect = screen.getByLabelText("Status");
+    await userEvent.click(statusSelect);
+    const statusOption = screen.getByRole("option", { name: "Pendente" });
+    await userEvent.click(statusOption);
+
     // Submete o formulário
     const submitButton = screen.getByRole("button", { name: "Salvar tarefa" });
     await userEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(insertTasks).toHaveBeenCalled();
+      expect(insertTasks).toHaveBeenCalledWith({
+        description: "Test Task Description",
+        responsible: "John Doe",
+        status: "todo",
+      });
     });
 
     // Verifica se o formulário foi resetado
@@ -96,6 +101,12 @@ describe("FormInsert", () => {
       "Test Task Description"
     );
     await userEvent.type(screen.getByLabelText("Responsável"), "John Doe");
+
+    // Seleciona o status
+    const statusSelect = screen.getByLabelText("Status");
+    await userEvent.click(statusSelect);
+    const statusOption = screen.getByRole("option", { name: "Pendente" });
+    await userEvent.click(statusOption);
 
     // Submete o formulário
     const submitButton = screen.getByRole("button", { name: "Salvar tarefa" });
