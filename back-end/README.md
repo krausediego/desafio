@@ -42,7 +42,7 @@ npm run dev
 yarn dev
 ```
 
-6. O servidor estará rodando em `http://localhost:3000`
+6. O servidor estará rodando em `http://localhost:3333`
 
 ## Estrutura do Projeto
 
