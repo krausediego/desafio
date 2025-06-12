@@ -21,7 +21,7 @@ export function HomePage() {
   });
 
   return (
-    <div className="w-full max-w-6xl space-y-6 bg-background" role="main">
+    <div className="w-full max-w-6xl space-y-6 bg-background p-6" role="main">
       <div className=" border p-4 rounded-md space-y-4">
         <div className="flex justify-between">
           <h2 className="font-bold text-xl">Cadastrar nova tarefa</h2>

@@ -62,13 +62,13 @@ export function FormInsert() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(submitForm)}
-        className="flex items-end gap-4"
+        className="flex flex-col xl:flex-row items-start xl:items-end gap-4"
       >
         <FormField
           control={form.control}
           name="description"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full xl:w-auto">
               <FormLabel htmlFor="description">Descrição</FormLabel>
               <FormControl>
                 <Input id="description" placeholder="Descrição" {...field} />
@@ -82,7 +82,7 @@ export function FormInsert() {
           control={form.control}
           name="responsible"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full xl:w-auto">
               <FormLabel htmlFor="responsible">Responsável</FormLabel>
               <FormControl>
                 <Input id="responsible" placeholder="Responsável" {...field} />
@@ -96,11 +96,11 @@ export function FormInsert() {
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full xl:w-auto">
               <FormLabel htmlFor="status">Status</FormLabel>
               <FormControl>
                 <Select onValueChange={field.onChange} value={field.value}>
-                  <SelectTrigger className="m-0" id="status">
+                  <SelectTrigger className="m-0 w-full" id="status">
                     <SelectValue placeholder="Status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -115,7 +115,11 @@ export function FormInsert() {
           )}
         />
 
-        <Button disabled={isInsertLoading} type="submit">
+        <Button
+          className="w-full xl:w-auto"
+          disabled={isInsertLoading}
+          type="submit"
+        >
           {isInsertLoading && <LoaderCircle className="w-4 h-4 animate-spin" />}
           <span>Salvar tarefa</span>
         </Button>
