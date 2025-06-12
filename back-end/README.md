@@ -60,8 +60,8 @@ back-end/
 
 ### Tarefas
 
-- `GET /tasks` - Lista todas as tarefas
-- `POST /tasks` - Cria uma nova tarefa
+- `GET /get-tasks` - Lista todas as tarefas
+- `POST /insert-tasks` - Cria uma nova tarefa
 
 ## Scripts Disponíveis
 
